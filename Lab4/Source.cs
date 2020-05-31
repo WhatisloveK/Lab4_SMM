@@ -8,7 +8,6 @@ namespace Lab4
     {
         private double customerCount;
         private double queue1Length;
-        private double queue2Length;
 
         private CustomQueue queue1;
 
@@ -23,13 +22,11 @@ namespace Lab4
         private object loker = new object();
 
         private string queue1Name = "Queue1";
-        private string queue2Name = "Queue2";
 
         public Source()
         {
             customerCount = 0;
             queue1Length = 0;
-            queue2Length = 0;
         }
 
 
@@ -78,8 +75,8 @@ namespace Lab4
                 customer.WriteToFile("Has been created");
                 customer.CreateMessage("Has been created");
 
-                if (startQueue.Count >= Settings.START_QUEUE_LIMIT 
-                    && device11.IsBusy && device12.IsBusy)
+                if ((startQueue.Count >= Settings.START_QUEUE_LIMIT)||
+                    (device11.IsBusy && device12.IsBusy))
                 {
                     customer.WriteToFile("Has been rejected");
                     customer.CreateMessage("Has been rejected");
@@ -116,7 +113,7 @@ namespace Lab4
 
             var queue1AvrTimeAsReal = servedCustomers.Where(x => !x.IsRejected).Select(x => x.Timings[queue1Name]).Average();
 
-            var queue1AvrTime = queue1.LengthOfQueuePerTime / queue1.AllServed;
+            var queue1AvrTime = queue1.LengthOfQueuePerTime / servedCustomers.Count;//queue1.AllServed;
 
             var device11Loading = device11.DeviceLoading;
             var device12Loading = device12.DeviceLoading;

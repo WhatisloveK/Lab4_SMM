@@ -96,7 +96,6 @@ namespace Lab4
                 resetEvent.Set();
             }
             var customer = customersList.Dequeue();
-            AllServed++;
 
             customer.Stopwatch.Stop();
             customer.Timings.Add(Name, (customer.Stopwatch.ElapsedMilliseconds / Settings.TimeMeasure));

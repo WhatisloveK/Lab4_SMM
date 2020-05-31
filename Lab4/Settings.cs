@@ -8,7 +8,7 @@ namespace Lab4
 {
     public class Settings
     {
-        public const int StartMetricDelay = 5000;
+        public const int StartMetricDelay = 3000;
 
         public const double DEVICE_1_MU = 0.2,
                             DEVICE_2_TIME = 2 * TimeMeasure;
